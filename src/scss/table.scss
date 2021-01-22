@@ -73,7 +73,9 @@
     position: absolute;
     background: $primary-color;
     opacity: 0;
+    bottom: 0;
     right: 0;
+    z-index: 99999;
 
     &:hover {
       opacity: 1;
@@ -81,6 +83,7 @@
 
     &.active {
       opacity: 1;
+      bottom: -5000px;
     }
   }
 
