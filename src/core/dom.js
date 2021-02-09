@@ -36,11 +36,13 @@ class Dom {
   }
 
   addClass(cssClass) {
-    return this.$el.classList.add(cssClass)
+    this.$el.classList.add(cssClass)
+    return this
   }
 
   removeClass(cssClass) {
-    return this.$el.classList.remove(cssClass)
+    this.$el.classList.remove(cssClass)
+    return this
   }
 
   get data() {
@@ -62,6 +64,20 @@ class Dom {
   focus() {
     this.$el.focus()
     return this
+  }
+
+  text(text) {
+    if (typeof text === 'string') {
+      this.$el.textContent = text
+      return this
+    }
+
+    if (this.$el.tagName.toLowerCase() === 'input') {
+      this.$el.value.trim()
+    }
+
+    return this.$el.textContent.trim()
+
   }
 
   id(parse) {
