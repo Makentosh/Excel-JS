@@ -4,9 +4,20 @@ import {Header} from '@/components/header/Header';
 import {Formula} from '@/components/formula/Formula';
 import {Toolbar} from '@/components/toolbar/Toolbar';
 import {Table} from '@/components/table/Table';
+import {rootReducer} from '@/components/redux/rootReducer';
+import {createStore} from '@core/createStore';
+import {storage} from '@core/utils';
+
+const store = createStore(rootReducer, storage('excelState'))
+
+store.subscribe(state => {
+  console.log('APP STATE', state)
+  storage('excelState', state)
+})
 
 const excel = new Excel('#app', {
-  components: [Header, Toolbar, Formula, Table]
+  components: [Header, Toolbar, Formula, Table],
+  store
 })
 
 excel.render()
