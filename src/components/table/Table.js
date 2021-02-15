@@ -32,7 +32,7 @@ export class Table extends ExcelComponent {
     this.selectCell(this.$root.find(`[data-id="0:0"]`))
 
     this.$on('formula:input', text => {
-      this.selection.current.text(text)
+      this.updateTextInStore(text)
     })
 
     this.$on('formula:enter', () => {
@@ -57,8 +57,6 @@ export class Table extends ExcelComponent {
   selectCell($cell) {
     this.selection.select($cell)
     this.$emit('table:select', $cell)
-
-    this.$dispatch({type: 'TEST'})
   }
 
   onMousedown(e) {
@@ -103,7 +101,15 @@ export class Table extends ExcelComponent {
   }
 
   onInput(e) {
-    this.$emit('table:input', $(e.target))
+    // this.$emit('table:input', $(e.target))
+    this.updateTextInStore($(e.target).text())
+  }
+
+  updateTextInStore(value) {
+    this.$dispatch(actions.changeText({
+      id: this.selection.current.id(),
+      value
+    }))
   }
 
 
