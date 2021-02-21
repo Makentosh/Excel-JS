@@ -5,6 +5,7 @@ import {isCell, matrix, nextSelector, shouldResize} from './table.functions';
 import {TableSelection} from '@/components/table/TableSelection';
 import {$} from '@core/dom';
 import * as actions from '@/components/redux/actions';
+import {defaultStyles} from '@/constans';
 
 export class Table extends ExcelComponent {
   static className = 'excel__table'
@@ -39,9 +40,9 @@ export class Table extends ExcelComponent {
       this.selection.current.focus()
     })
 
-    // this.$subscribe(state => {
-    //   console.log('TABLE STATE', state)
-    // })
+    this.$on('toolbar:applyStyle', style => {
+      this.selection.applyStyle(style)
+    })
 
   }
 
@@ -57,6 +58,8 @@ export class Table extends ExcelComponent {
   selectCell($cell) {
     this.selection.select($cell)
     this.$emit('table:select', $cell)
+
+    console.log($cell.getStyles(Object.keys(defaultStyles)))
   }
 
   onMousedown(e) {

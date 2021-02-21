@@ -13,6 +13,10 @@ export class TableSelection {
     this.current = $el;
   }
 
+  applyStyle(style) {
+    this.group.forEach($el => $el.css(style))
+  }
+
   clear() {
     this.group.forEach($el => $el.removeClass(TableSelection.className));
     this.group = [];
