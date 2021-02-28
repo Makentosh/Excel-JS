@@ -1,5 +1,5 @@
 import {Page} from '@core/Page';
-import {createStore} from '@core/createStore';
+import {createStore} from '@core/store/createStore';
 import {rootReducer} from '@/components/redux/rootReducer';
 import {normalizeInitialState} from '@/components/redux/initialState';
 import {Header} from '@/components/header/Header';
