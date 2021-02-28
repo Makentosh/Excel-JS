@@ -1,6 +1,6 @@
 .idea
 node_modules
-/src
+src
 .eslintignore
 .eslintrc
 webpack.config.js
